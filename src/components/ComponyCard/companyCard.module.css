@@ -1,0 +1,124 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 1.5rem;
+    padding-bottom: 0.8rem;
+    width: 100%;
+    max-width: 24rem;
+    height: 100%;
+    height: 38rem;
+    box-shadow: 0px 0px 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+}
+
+.container__header {
+    flex: 1;
+}
+
+.container__header__time {
+    display: flex;
+    align-items: center;
+    font-size: x-small;
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+    max-width: fit-content;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+}
+
+.container__header__details {
+    display: flex;
+    flex-direction: row;
+    object-fit: contain;
+    margin: 0.2rem 0;
+    padding: 0.5rem 0;
+}
+
+.header__logo > img {
+    height: 3rem;
+    width: 3rem;
+}
+
+.header__meta {
+    margin-left: 0.4rem;
+}
+
+.header__meta > p:nth-child(1) {
+    font-size: small;
+    color: rgb(3, 172, 172);
+    font-weight: bold;
+}
+.header__meta > p:nth-child(2) {
+    font-size: medium;
+    color: black;
+}
+.header__meta > p:nth-child(3) {
+    font-size: small;
+}
+
+.header__salary_info {
+    font-size: medium;
+    font-weight: bold;
+    color: rgb(3, 172, 172);
+}
+
+.about_us {
+    font-size: small;
+    flex: 2;
+    height: 100%;
+    max-height: 20rem;
+    overflow-y: hidden;
+    position: relative;
+}
+
+.about_us > div:nth-child(1)::before {
+    content: "";
+    height: 18rem;
+    width: 21rem;
+    position: absolute;
+    background-image: linear-gradient(to bottom, transparent, white);
+}
+
+.about_us__view_more {
+    font-size: medium;
+    color: blueviolet;
+    text-align: center;
+}
+
+.footer {
+    flex: 0.8;
+}
+
+.footer__meta > p:nth-child(1) {
+    font-weight: bold;
+    color: rgb(3, 172, 172);
+    font-size: small;
+}
+
+.footer__meta > p:nth-child(2) {
+    font-size: medium;
+}
+
+.footer__btn_group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.footer__btn {
+    padding: 0.7rem 0;
+    margin-top: 0.3rem;
+    border-radius: 0.5rem;
+    outline: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.footer__btn:nth-child(1) {
+    background-color: rgb(3, 172, 172);
+
+}
+.footer__btn:nth-child(2) {
+    background-color: rgb(105, 20, 185);
+}
