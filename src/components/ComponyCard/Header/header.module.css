@@ -1,0 +1,49 @@
+
+.header {
+    flex: 1;
+}
+
+.header__time {
+    display: flex;
+    align-items: center;
+    font-size: x-small;
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+    max-width: fit-content;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+}
+
+.header__details {
+    display: flex;
+    flex-direction: row;
+    object-fit: contain;
+    margin: 0.5rem 0;
+    padding: 0.5rem 0;
+}
+
+.header__logo > img {
+    height: 3rem;
+    width: 3rem;
+}
+
+.header__meta {
+    margin-left: 1rem;
+}
+
+.header__meta > p:nth-child(1) {
+    font-size: small;
+    color: rgb(3, 172, 172);
+    font-weight: bold;
+}
+.header__meta > p:nth-child(2) {
+    font-size: medium;
+    color: black;
+}
+.header__meta > p:nth-child(3) {
+    font-size: small;
+}
+
+.header__salary_info {
+    font-size: medium;
+    color: rgb(3, 172, 172);
+}

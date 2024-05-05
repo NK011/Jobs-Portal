@@ -1,18 +1,19 @@
-import React from "react";
-import Header from "./Header";
-import AboutUs from "./AboutUs";
-import Footer from "./Footer";
-import styles from "./companyCard.module.css"
+import { JobDetails } from "../../commonUtils/types";
+import AboutUs from "./AboutUs/AboutUs";
+import Footer from "./Footer/Footer";
+import Header from "./Header/Header";
+import styles from "./companyCard.module.css";
 
-function CompanyCard() {
+type Props = {
+    jobDetails: JobDetails;
+};
+
+function CompanyCard({ jobDetails }: Props) {
     return (
         <div className={styles.container}>
-            {/* header */}
-            <Header />
-            {/* about us */}
-            <AboutUs />
-            {/* cta */}
-            <Footer />
+            <Header jobDetails={jobDetails} />
+            <AboutUs description={jobDetails.jobDetailsFromCompany} jdLink={jobDetails.jdLink} />
+            <Footer jdLink={jobDetails.jdLink} minExp={jobDetails.minExp} />
         </div>
     );
 }

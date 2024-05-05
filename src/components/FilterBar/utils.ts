@@ -1,18 +1,25 @@
-export const filterNames = [
+export const searchFilter = [
+    {
+        key: 1,
+        name: "location",
+        placeholder: "Search by location",
+    },
     {
         key: 2,
-        name: "size",
-        placeholder: "Number of Employees",
+        name: "companyName",
+        placeholder: "Search by company name",
     },
+    {
+        key: 3,
+        name: "jobRole",
+        placeholder: "Search by Job role",
+    },
+];
+export const filterNames = [
     {
         key: 3,
         name: "experience",
         placeholder: "Experience",
-    },
-    {
-        key: 4,
-        name: "site",
-        placeholder: "Remote",
     },
     {
         key: 5,
@@ -21,44 +28,14 @@ export const filterNames = [
     },
 ];
 
-const sizeOptions = [
-    // {
-    //     min: 1,
-    //     max: 10,
-    // },
-    // {
-    //     min: 11,
-    //     max: 20,
-    // },
-    // {
-    //     min: 21,
-    //     max: 50,
-    // },
-    // {
-    //     min: 51,
-    //     max: 100,
-    // },
-    // {
-    //     min: 101,
-    //     max: 200,
-    // },
-    // {
-    //     min: 201,
-    //     max: 500,
-    // },
-    // {
-    //     min: 500,
-    // },
-];
 
-const siteOptions = ["Remote", "Hybrid", "In-office"];
+const locationOptions = ["Remote", "Hybrid", "In-office"];
 
-const salaryOptions = ["0L", "10l", "20L", "30L", "40L", "50L", "60L", "70L"];
+const salaryOptions = ["0", "10", "20", "30", "40", "50", "60", "70"];
 
 const experienceOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 export const filterOptions = {
-    ["size"]: sizeOptions,
     ["experience"]: experienceOptions,
-    ["site"]: siteOptions,
+    ["location"]: locationOptions,
     ["salary"]: salaryOptions,
 };
