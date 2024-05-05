@@ -1,5 +1,5 @@
-- Live - https://jobs-portal-project.netlify.app/ 
 # React + TypeScript + Vite + Redux + Material UI
+- Live - https://jobs-portal-project.netlify.app/ 
 
 # WHY Vite ?
   - Vite gives you fast dev servers, optimized build and great developer experience.
