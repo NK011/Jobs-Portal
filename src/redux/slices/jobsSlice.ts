@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { JobDetails } from "../../commonUtils/types";
+import { JobDetails, JobsSliceState } from "../../commonUtils/types";
 
-const initialState = {
+const initialState: JobsSliceState = {
     list: [],
     loading: false,
     error: "",
@@ -14,7 +14,7 @@ const jobsSlice = createSlice({
     reducers: {
         setList: (state, action) => {
             const jobids = state.list.map((job: JobDetails) => job?.jdUid);
-            const jobsToAdd = action.payload.filter(
+            const jobsToAdd: Array<JobDetails> = action.payload.filter(
                 (job: JobDetails) => !jobids.includes(job.jdUid)
             );
             state.list.push(...jobsToAdd);

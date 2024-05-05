@@ -2,13 +2,13 @@ import { useEffect, useRef, useState } from "react";
 
 import { ArrowDropDown, ArrowDropUp, Close } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import { FilterOptions } from "../../../commonUtils/types";
 import { filterDefaults } from "../../../redux/slices/filterBarSlice";
 import styles from "../style.module.css";
 import { filterOptions } from "../utils";
+import { FilterOptions, Filters } from "../../../commonUtils/types";
 
 type Props = {
-    name: keyof FilterOptions; // Specify that name should be one of the keys of FilterOptions
+    name: keyof Filters; // Specify that name should be one of the keys of FilterOptions
     placeholder: string;
     value: string | number;
     handleFilterChange: (name: string, value: string | number) => void;
@@ -23,7 +23,7 @@ function FilterDropdowns({
     // states
     const [open, setOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
-    const [filteredOptions, setFilteredOptions] = useState([]);
+    const [filteredOptions, setFilteredOptions] = useState<(string | number)[]>([]);
     const inputRef = useRef<HTMLDivElement>(null);
 
     // handlers
@@ -34,25 +34,25 @@ function FilterDropdowns({
     // useEffects
     useEffect(() => {
         // set input value if already in store
-        setSearchTerm(value ? value : "");
+        setSearchTerm(value ? value.toString() : "");
     }, [value]);
 
     useEffect(() => {
         // filter options based on search
         if (searchTerm) {
-            const options = filteredOptions.filter((opt) => {
+            const options = filteredOptions.filter((opt: (string | number)) => {
                 return opt.toString().includes(searchTerm);
             });
             setFilteredOptions([...options]);
         } else {
-            setFilteredOptions(filterOptions[name]);
+            setFilteredOptions(filterOptions[name as keyof FilterOptions]);
         }
     }, [searchTerm]);
 
     useEffect(() => {
         // close the dropdown if clicked outside of the dropdown
-        const handleOutsideClick = (event) => {
-            if (inputRef.current && !inputRef.current.contains(event.target)) {
+        const handleOutsideClick = (event: MouseEvent) => {
+            if (inputRef.current && !inputRef.current.contains(event.target as Node)) {
                 setOpen(false);
             }
         };

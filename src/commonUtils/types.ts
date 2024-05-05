@@ -15,6 +15,24 @@ export interface JobDetails {
 
 export interface FilterOptions {
     experience: number[];
-    location: string[];
     salary: string[];
+}
+
+export interface Filters {
+    experience: number;
+    location: string;
+    salary: string;
+    companyName: string;
+    jobRole: string;
+}
+
+export interface Filter {
+    [key: string]: number | string;
+}
+
+export interface JobsSliceState {
+    list: JobDetails[];
+    loading: boolean;
+    error: string;
+    page: number;
 }

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Filters } from "../../commonUtils/types";
 
-export const filterDefaults = {
+export const filterDefaults: Filters = {
     experience: 0,
     location: "",
     salary: "",

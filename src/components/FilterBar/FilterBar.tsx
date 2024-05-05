@@ -1,20 +1,21 @@
-import { useDispatch, useSelector } from "react-redux";
+import { Filters } from "../../commonUtils/types";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
-    setExperience,
-    setSalary,
-    setLocation,
     setCompanyName,
+    setExperience,
     setjobRole,
+    setLocation,
+    setSalary,
 } from "../../redux/slices/filterBarSlice";
 import FilterDropdowns from "./FilterDropdowns/FilterDropdowns";
+import SearchFilter from "./SearchFilter/SearchFIlter";
 import styles from "./style.module.css";
 import { filterNames, searchFilter } from "./utils";
-import SearchFilter from "./SearchFilter/SearchFIlter";
 
 function FilterBar() {
     // redux store
-    const filters = useSelector((state) => state.filterBar);
-    const dispatch = useDispatch();
+    const filters: Filters = useAppSelector((state) => state.filterBar);
+    const dispatch = useAppDispatch();
 
     // handlers
     const handleFilterChange = (filterName: string, value: string | number) => {
@@ -45,7 +46,7 @@ function FilterBar() {
                 {searchFilter.map((filter, key) => (
                     <SearchFilter
                         key={key}
-                        value={filters[filter.name]}
+                        value={filters[filter.name as keyof Filters]}
                         name={filter.name}
                         placeholder={filter.placeholder}
                         handleFilterChange={handleFilterChange}
@@ -56,8 +57,8 @@ function FilterBar() {
                 {filterNames.map((filter, key) => (
                     <FilterDropdowns
                         key={key}
-                        value={filters[filter.name]}
-                        name={filter.name}
+                        value={filters[filter.name as keyof Filters]}
+                        name={filter.name as keyof Filters}
                         placeholder={filter.placeholder}
                         handleFilterChange={handleFilterChange}
                     />

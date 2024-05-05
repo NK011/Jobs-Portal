@@ -1,3 +1,5 @@
+import { FilterOptions } from "../../commonUtils/types";
+
 export const searchFilter = [
     {
         key: 1,
@@ -28,14 +30,11 @@ export const filterNames = [
     },
 ];
 
-
-const locationOptions = ["Remote", "Hybrid", "In-office"];
-
 const salaryOptions = ["0", "10", "20", "30", "40", "50", "60", "70"];
 
 const experienceOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-export const filterOptions = {
+
+export const filterOptions: FilterOptions = {
     ["experience"]: experienceOptions,
-    ["location"]: locationOptions,
     ["salary"]: salaryOptions,
 };

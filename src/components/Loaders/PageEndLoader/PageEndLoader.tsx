@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./PageEndLoader.module.css";
 
 function PageEndLoader() {

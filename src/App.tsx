@@ -1,22 +1,26 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
+import { JobDetails } from "./commonUtils/types";
 import CompanyCard from "./components/ComponyCard/CompanyCard";
 import FilterBar from "./components/FilterBar/FilterBar";
-import { setList, setLoading, setPage } from "./redux/slices/jobsSlice";
-import { useDispatch, useSelector } from "react-redux";
 import PageEndLoader from "./components/Loaders/PageEndLoader/PageEndLoader";
-import { JobDetails } from "./commonUtils/types";
+import { useAppDispatch, useAppSelector } from "./redux/hooks";
+import { setList, setLoading, setPage } from "./redux/slices/jobsSlice";
 
 function App() {
     // redux store
-    const dispatch = useDispatch();
-    const { list: jdList, loading, page } = useSelector((state) => state.jobs);
-    const filters = useSelector((state) => state.filterBar);
+    const dispatch = useAppDispatch();
+    const {
+        list: jdList,
+        loading,
+        page,
+    } = useAppSelector((state) => state.jobs);
+    const filters = useAppSelector((state) => state.filterBar);
     const { experience, location, companyName, salary, jobRole } = filters;
 
     // states
     const [filteredJobs, setFilteredJobs] = useState(jdList);
-    const pageRef = useRef("");
+    const pageRef = useRef<number>();
 
     // handlers
     const fetchJobs = async () => {
@@ -30,7 +34,7 @@ function App() {
                 },
                 body: JSON.stringify({
                     limit: 10,
-                    offset: (pageRef.current - 1) * 10,
+                    offset: (Number(pageRef.current) - 1) * 10,
                 }),
             }
         );
@@ -38,7 +42,7 @@ function App() {
         const data = await response.json();
         dispatch(setList(data.jdList));
         dispatch(setLoading(false));
-        dispatch(setPage(pageRef.current + 1));
+        dispatch(setPage(Number(pageRef.current) + 1));
     };
 
     const applyFilters = () => {
@@ -46,7 +50,8 @@ function App() {
         let jobs = jdList;
         if (experience) {
             jobs = jobs.filter(
-                (job: JobDetails) => job.minExp <= experience && experience < job.maxExp
+                (job: JobDetails) =>
+                    job.minExp <= experience && experience < job.maxExp
             );
         }
 
@@ -58,7 +63,8 @@ function App() {
 
         if (salary) {
             jobs = jobs.filter(
-                (job: JobDetails) => job.minJdSalary <= salary && salary < job.maxJdSalary
+                (job: JobDetails) =>
+                    (job.minJdSalary && job.minJdSalary <= parseInt(salary) && parseInt(salary) < job.maxJdSalary)
             );
         }
 
@@ -101,7 +107,10 @@ function App() {
             });
         });
 
-        observer.observe(document.querySelector("#page-end"));
+        const pageEndElement = document.querySelector("#page-end")
+        if (pageEndElement) {
+            observer.observe(pageEndElement);
+        }
 
         return () => observer.disconnect();
     }, []);

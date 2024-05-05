@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 
 import { Close } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import { FilterOptions } from "../../../commonUtils/types";
 import { filterDefaults } from "../../../redux/slices/filterBarSlice";
 import styles from "../style.module.css";
+import { Filters } from "../../../commonUtils/types";
 
 type Props = {
-    name: keyof FilterOptions; // Specify that name should be one of the keys of FilterOptions
+    name: string; // Specify that name should be one of the keys of FilterOptions
     placeholder: string;
     value: string | number;
     handleFilterChange: (name: string, value: string | number) => void;
@@ -19,12 +19,15 @@ function SearchFilter({ value, name, placeholder, handleFilterChange }: Props) {
 
     // useEffects
     useEffect(() => {
-        setSearchTerm(value ? value : "");
+        setSearchTerm(value ? value.toString() : "");
     }, [value]);
 
     useEffect(() => {
         // debounce
-        const timeout = setTimeout(() => handleFilterChange(name, searchTerm), 1000);
+        const timeout = setTimeout(
+            () => handleFilterChange(name, searchTerm),
+            1000
+        );
         return () => {
             clearTimeout(timeout);
         };
@@ -51,7 +54,7 @@ function SearchFilter({ value, name, placeholder, handleFilterChange }: Props) {
                     <IconButton
                         onClick={() => {
                             setSearchTerm("");
-                            handleFilterChange(name, filterDefaults[name]);
+                            handleFilterChange(name, filterDefaults[name as keyof Filters]);
                         }}
                     >
                         <Close fontSize="small" />
